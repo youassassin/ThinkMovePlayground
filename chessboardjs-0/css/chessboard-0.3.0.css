@@ -1,0 +1,185 @@
+/*!
+ * chessboard.js v0.3.0
+ *
+ * Copyright 2013 Chris Oakman
+ * Released under the MIT license
+ * https://github.com/oakmac/chessboardjs/blob/master/LICENSE
+ *
+ * Date: 10 Aug 2013
+ */
+body {
+    font-family: 'Slackey', cursive;
+
+}
+h2 {
+}
+
+.page-footer {
+    color: #daac27;
+    margin: auto;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid;
+}
+
+.button{
+    box-sizing: border-box;
+    background: #2ba6cb;
+    border: 1px solid #1e728c;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Coming Soon', cursive;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out;
+    width: 48%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.button-box {
+    text-align: center;
+}
+/**********************************************************************
+ ***** chest.js
+ **********************************************************************/
+
+.promotion {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.promotion-content {
+    background-color: #daac27;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.promotion-button {
+    box-sizing: border-box;
+    background: #2ba6cb;
+    border: 1px solid #1e728c;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out;
+    width: 22%;
+    margin: 5px;
+    border-radius: 3px;
+}
+.promotion-image {
+    text-align: center;
+    padding: 2px;
+    max-width: 98%;
+    width: auto;
+    height: auto;
+}
+
+.promotion-min {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.promotion-min:hover,
+.promotion-min:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*
+.promotion-image:hover,
+.promotion-image:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+*/
+/**********************************************************************
+ ***** chessboard.js.css
+ **********************************************************************/
+
+/* clearfix */
+.clearfix-7da63 {
+    clear: both;
+}
+
+/* board */
+.board-b72b1 {
+    border: 2px solid #404040;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+/* square */
+.square-55d63 {
+    float: left;
+    position: relative;
+
+    /* disable any native browser highlighting */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* white square */
+.white-1e1d7 {
+    background-color: #f0d9b5;
+    color: #b58863;
+}
+
+/* black square */
+.black-3c85d {
+    background-color: #b58863;
+    color: #f0d9b5;
+}
+
+/* highlighted square */
+.highlight1-32417, .highlight2-9c5d2 {
+    -webkit-box-shadow: inset 0 0 3px 3px yellow;
+    -moz-box-shadow: inset 0 0 3px 3px yellow;
+    box-shadow: inset 0 0 3px 3px yellow;
+}
+
+/* notation */
+.notation-322f9 {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    position: absolute;
+}
+
+.alpha-d2270 {
+    bottom: 1px;
+    right: 3px;
+}
+
+.numeric-fc462 {
+    top: 2px;
+    left: 2px;
+}
