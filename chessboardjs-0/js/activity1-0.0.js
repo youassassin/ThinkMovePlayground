@@ -18,9 +18,10 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 var onSnapEnd = function() {
     game.get();
     board.position(game.fen());
+    updateStatus();
 }
 var onDragStart = function(source, piece, position, orientation) {
-    if (game.isGameOver() === true ||
+    if (game.isGameOver() ||
         (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
         (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
        return false;
@@ -35,8 +36,15 @@ var cfg = {
     onSnapEnd: onSnapEnd
 };
 var updateStatus = function (value) {
-    $('#status').html((game.getWhosTurn() === 'w' ? 'White' : 'Black') + ' to move');
-    $('#fen').html('Forsyth-Edwards Notation:<br>' + game.fen());
+    var color = game.getWhosTurn() === 'w' ? 'White' : 'Black';
+    var status = ' to move';
+    if(game.isGameOver()) {
+        status = ' wins!';
+        console.log(color);
+        color = color === 'White' ? 'Black' : 'White';
+    }
+    $('#status').html(color + status);
+    $('#fen').html('Forsyth-Edwards Notation (FEN):<br>' + game.fen());
     $('#pgn').html('Portable Game Notation (PGN):<br>' + game.pgn());
 };
 
