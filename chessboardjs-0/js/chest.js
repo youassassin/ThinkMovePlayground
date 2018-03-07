@@ -1,3 +1,5 @@
+'use strict';
+
 var Chest = function(fen) {
 
     var board = [];
@@ -221,29 +223,17 @@ var Chest = function(fen) {
     var createPromotionBox = function () {
         var choice = '';
         var b = document.getElementById('button-container');
+        var bg = document.createElement('div');
+        bg.setAttribute('id', 'promotion-box');
+        bg.setAttribute('class','promotion');
+        b.appendChild(bg);
         var box = document.createElement('div');
-        box.setAttribute('id', 'promotion-box');
-        box.setAttribute('class','promotion');
-        b.appendChild(box);
-        var text = document.createElement('div');
-        text.setAttribute('class','promotion-content');
-        text.setAttribute('id', 'promotion-text');
-        text.innerHTML = 'Promote your pawn!';
-        box.appendChild(text);
-        var min = document.createElement('div');
-        min.setAttribute('id','promotion-min');
-        min.setAttribute('class','promotion-min');
-        min.innerHTML = '&minus;';
-        var s = true;
-        min.onclick = function() {
-            //TODO add minimize function
-            if(s)
-                b.style.display = 'none';
-            else
-                b.style.display = 'block';
-        };
-        text.appendChild(min);
-        text.innerHTML += '<br>';
+        box.setAttribute('id', 'promotion-text');
+        box.setAttribute('class','promotion-content');
+        box.setAttribute('display', 'block');
+        box.innerHTML = 'Promote your pawn!';
+        bg.appendChild(box);
+        box.innerHTML += '<br>';
         var images = ['Q', 'N', 'R', 'B'];
         for(var i in images) (function(i){
             var btn = document.createElement('button');
@@ -261,13 +251,30 @@ var Chest = function(fen) {
                     gameOver = true;
                 deletePromotionBox();
             };
-            text.appendChild(btn);
+            box.appendChild(btn);
             var img = document.createElement('img');
             img.setAttribute('id',images[i]+'img');
             img.setAttribute('src','./img/chesspieces/wikipedia/' + getColor() + images[i] + '.png');
             img.setAttribute('class','promotion-image');
             btn.appendChild(img);
         })(i);
+        var min = document.createElement('span');
+        min.setAttribute('id','promotion-min');
+        min.setAttribute('class','promotion-min');
+        min.innerHTML = '&minus;';
+        var s = true;
+        min.onclick = function() {
+            console.log('pressed!');
+            if(s) {
+                box.style.opacity = '.25';
+                s = false;
+            }
+            else{
+                box.style.opacity = '1';
+                s = true;
+            }
+        };
+        box.appendChild(min);
     };
 
     var deletePromotionBox = function () {

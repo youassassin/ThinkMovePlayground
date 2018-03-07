@@ -21,11 +21,11 @@ var onSnapEnd = function() {
     updateStatus();
 }
 var onDragStart = function(source, piece, position, orientation) {
-    if (game.isGameOver() ||
-        (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
-        (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
-       return false;
-    }
+    // if (game.isGameOver() ||
+    //     (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
+    //     (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
+    //    return false;
+    // }
 };
 var cfg = {
     draggable: true,
@@ -40,7 +40,6 @@ var updateStatus = function (value) {
     var status = ' to move';
     if(game.isGameOver()) {
         status = ' wins!';
-        console.log(color);
         color = color === 'White' ? 'Black' : 'White';
     }
     $('#status').html(color + status);
