@@ -61,12 +61,12 @@ h2 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
 
 .promotion-content {
     background-color: #daac27;
+    z-index: 2;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -109,14 +109,7 @@ h2 {
     text-decoration: none;
     cursor: pointer;
 }
-/*
-.promotion-image:hover,
-.promotion-image:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-*/
+
 /**********************************************************************
  ***** chessboard.js.css
  **********************************************************************/

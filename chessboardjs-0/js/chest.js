@@ -224,11 +224,11 @@ var Chest = function(fen) {
         var choice = '';
         var b = document.getElementById('button-container');
         var bg = document.createElement('div');
-        bg.setAttribute('id', 'promotion-box');
+        bg.setAttribute('id', 'promotion-bg');
         bg.setAttribute('class','promotion');
         b.appendChild(bg);
         var box = document.createElement('div');
-        box.setAttribute('id', 'promotion-text');
+        box.setAttribute('id', 'promotion-box');
         box.setAttribute('class','promotion-content');
         box.setAttribute('display', 'block');
         box.innerHTML = 'Promote your pawn!';
@@ -258,23 +258,38 @@ var Chest = function(fen) {
             img.setAttribute('class','promotion-image');
             btn.appendChild(img);
         })(i);
+        var s = true;
         var min = document.createElement('span');
         min.setAttribute('id','promotion-min');
         min.setAttribute('class','promotion-min');
         min.innerHTML = '&minus;';
-        var s = true;
-        min.onclick = function() {
-            console.log('pressed!');
-            if(s) {
-                box.style.opacity = '.25';
-                s = false;
-            }
-            else{
-                box.style.opacity = '1';
-                s = true;
-            }
-        };
         box.appendChild(min);
+        // min.onclick = function() {
+        //     console.log('pressed!');
+        //     if(s) {
+        //         box.style.opacity = '.25';
+        //         s = false;
+        //     }
+        //     else{
+        //         box.style.opacity = '1';
+        //         s = true;
+        //     }
+        // };
+        window.onclick = function(event) {
+            if (event.target === bg || event.target === min) {
+                if(s) {
+                    box.style.opacity = '.25';
+                    min.innerHTML = '&plus;';
+                    s = false;
+                }
+                else{
+                    box.style.opacity = '1';
+                    min.innerHTML = '&minus;';
+                    s = true;
+                }
+            }
+
+        };
     };
 
     var deletePromotionBox = function () {
@@ -284,8 +299,8 @@ var Chest = function(fen) {
             removeElement(images[i]+'btn');
         }
         removeElement('promotion-min');
-        removeElement('promotion-text');
         removeElement('promotion-box');
+        removeElement('promotion-bg');
         onSnapEnd();
     };
 
