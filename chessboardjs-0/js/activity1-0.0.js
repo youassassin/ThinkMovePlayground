@@ -5,7 +5,7 @@ var reset = function() {
     board.position(activity1StartingPos, true);
     game.setPosition(activity1StartingPos);
     updateStatus();
-}
+};
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 //    $('#fen').html(ChessBoard.objToFen(newPos));
     var move = game.move(source, target);
@@ -19,13 +19,13 @@ var onSnapEnd = function() {
     game.get();
     board.position(game.fen());
     updateStatus();
-}
+};
 var onDragStart = function(source, piece, position, orientation) {
-    // if (game.isGameOver() ||
-    //     (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
-    //     (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
-    //    return false;
-    // }
+    if (game.isGameOver() ||
+        (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
+        (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
+       return false;
+    }
 };
 var cfg = {
     draggable: true,
@@ -46,7 +46,9 @@ var updateStatus = function (value) {
     $('#fen').html('Forsyth-Edwards Notation (FEN):<br>' + game.fen());
     $('#pgn').html('Portable Game Notation (PGN):<br>' + game.pgn());
 };
+var 
 
 var board = ChessBoard('board', cfg);
 $('#orientationBtn').on('click', board.flip);
 $('#resetBtn').on('click', reset);
+$('#sizeBtn').on('click',);
