@@ -8,23 +8,24 @@
 
 </head>
 <body >
-<div class="button-box" id="button-container" style="width: 600px">
+<div class="button-box" id="button-container" style="max-width: 600px">
     <button class="button" id="orientationBtn">Switch Sides</button>
     <button class="button" id="resetBtn">Reset Board</button>
     <button class="button" id="sizeBtn">Board Size</button>
+    <button class="button" id="undoBtn">Board Size</button>
 </div>
-<div id="board" style="width: 600px"></div>
+<div id="board" style="max-width: 600px"></div>
 <script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="./js/json3.min.js"></script>
 <script type="text/javascript" src="./js/chessboard-0.3.0.js"></script>
 <script type="text/javascript" src="./js/chest.js"></script>
 <script type="text/javascript" src="./js/activity1-0.0.js"></script>
-<p>
+<p id="notation" style="max-width: 600px">
     <span id="status">White to move</span>
     <br><br>
-    <span id="fen">Forsyth-Edwards Notation (FEN):<br></span>
-    <br><br>
     <span id="pgn">Portable Game Notation (PGN):<br></span>
+    <br><br>
+    <span id="fen">Forsyth-Edwards Notation (FEN):<br></span>
     <br><br>
 </p>
 <div class="page-footer">

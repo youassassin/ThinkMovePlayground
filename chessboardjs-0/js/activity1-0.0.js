@@ -6,6 +6,10 @@ var reset = function() {
     game.setPosition(activity1StartingPos);
     updateStatus();
 };
+var undo = function() {
+    game.undo();
+    updateStatus();
+};
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 //    $('#fen').html(ChessBoard.objToFen(newPos));
     var move = game.move(source, target);
@@ -42,13 +46,33 @@ var updateStatus = function (value) {
         status = ' wins!';
         color = color === 'White' ? 'Black' : 'White';
     }
+    board.resize();
     $('#status').html(color + status);
-    $('#fen').html('Forsyth-Edwards Notation (FEN):<br>' + game.fen());
     $('#pgn').html('Portable Game Notation (PGN):<br>' + game.pgn());
+    $('#fen').html('Forsyth-Edwards Notation (FEN):<br>' + game.fen());
 };
-var 
+
+var resize = function () {
+    var size = ['300px', '450px', '600px', '800px'];
+    var currentSize = size.indexOf(document.getElementById('board').style.maxWidth);
+    var i = currentSize === size.length - 1 ? 0 : currentSize + 1;
+    document.getElementById('board').style.maxWidth = size[i];
+    document.getElementById('button-container').style.maxWidth = size[i];
+    document.getElementById('notation').style.maxWidth = size[i];
+    onSnapEnd();
+};
 
 var board = ChessBoard('board', cfg);
 $('#orientationBtn').on('click', board.flip);
 $('#resetBtn').on('click', reset);
-$('#sizeBtn').on('click',);
+$('#sizeBtn').on('click', resize);
+$('#undoBtn').on('click', undo);
+
+window.onresize = function() {
+    document.getElementById('board').style.maxWidth = $(window).resize(window.width);
+    document.getElementById('button-container').style.maxWidth = $(window).resize(window.width);
+    document.getElementById('notation').style.maxWidth = $(window).resize(window.width);
+    board.resize();
+    updateStatus();
+};
+updateStatus();

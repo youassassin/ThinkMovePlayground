@@ -2,17 +2,21 @@
 
 var Chest = function(fen) {
 
+    //new game
     var board = [];
-    var lastBoard = [];
-    var history = [];
+    var lastBoard = []; //TODO optimize by utlilizing history
+    var sanList = [];
+    var history = []; //list of source, target objects
+    var turn = 0;
+    var gameOver = false;
+
+    //constants
     var winCondition = '';
     var alpha = 'abcdefgh';
     var black = 'pkqnbr';
     var white = black.toUpperCase();
     var promotion = { flag: false, index: -1 , update: false };
     var isEnPassant = { flag: false, direction: 0};
-    var turn = 0;
-    var gameOver = false;
 
     fen = fen === 'start' ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR': fen;
     //this initializes the board array
@@ -20,6 +24,7 @@ var Chest = function(fen) {
         turn = 0;
         gameOver = false;
         board = [];
+        sanList = [];
         history = [];
         var tokens = fen.split('/');
         for (var i = 0; i < tokens.length; i++) {
@@ -41,8 +46,8 @@ var Chest = function(fen) {
 
     this.get = function() {
         console.log(board);
-        console.log(arrayToFen(board));
-        console.log(arrayToPgn(history));
+        console.log(sanList);
+        console.log(history);
     };
     this.printBoard = function (input) {
         var str = '';
@@ -206,18 +211,7 @@ var Chest = function(fen) {
     //promotes the pawn at promotion.index
     var promote = function () {
         promotion.flag = false;
-        // while(choice === '') {
-        //     choice = prompt('Promote your pawn! Please type in what you want',
-        //         'Queen, kNight, Rook, Bishop');
-        //     choice = choice === null ? 'q' : choice.charAt(0).toLowerCase();
-        //     switch (choice) {
-        //         case 'q': case 'n': case 'r': case 'b': break;
-        //         case 'k': choice = 'n'; break;
-        //         default: alert('You have not typed in a valid choice.'); choice = '';
-        //     }
-        // }
         createPromotionBox();
-
     };
 
     var createPromotionBox = function () {
@@ -245,7 +239,7 @@ var Chest = function(fen) {
                     choice = choice.toUpperCase();
                 else
                     choice = choice.toLowerCase();
-                history[history.length-1] += choice.toUpperCase();
+                sanList[sanList.length-1] += choice.toUpperCase();
                 board[promotion.index] = choice;
                 if(winCondition === 'promotion')
                     gameOver = true;
@@ -264,17 +258,6 @@ var Chest = function(fen) {
         min.setAttribute('class','promotion-min');
         min.innerHTML = '&minus;';
         box.appendChild(min);
-        // min.onclick = function() {
-        //     console.log('pressed!');
-        //     if(s) {
-        //         box.style.opacity = '.25';
-        //         s = false;
-        //     }
-        //     else{
-        //         box.style.opacity = '1';
-        //         s = true;
-        //     }
-        // };
         window.onclick = function(event) {
             if (event.target === bg || event.target === min) {
                 if(s) {
@@ -323,7 +306,7 @@ var Chest = function(fen) {
             result += target;
         if(promotion.flag)
             result += '=';
-        history.push(result);
+        sanList.push(result);
     };
 
     //converts input move to board move
@@ -342,6 +325,10 @@ var Chest = function(fen) {
         return turn % 2 === 0 ? 'w' : 'b';
     };
 
+    var removeLastMove = function () {
+        sanList.pop();
+    };
+
 ////////////////////////////////////////////////////////////////////////////////////////
 ////    Public
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -350,7 +337,7 @@ var Chest = function(fen) {
         return arrayToFen(board);
     };
     this.pgn = function() {
-        return arrayToPgn(history);
+        return arrayToPgn(sanList);
     };
     this.setWinCondition = function(condition) {
         if(condition === 'promotion') {
@@ -381,8 +368,8 @@ var Chest = function(fen) {
     };
 
     this.undo = function() {
-
-    }
+        removeLastMove();
+    };
 
 
 

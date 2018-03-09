@@ -14,6 +14,15 @@ body {
 h2 {
 }
 
+#board {
+    margin-left: auto;
+    margin-right: auto;
+}
+#notation {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .page-footer {
     color: #daac27;
     margin: auto;
@@ -33,18 +42,20 @@ h2 {
     font-family: 'Coming Soon', cursive;
     font-size: 14px;
     font-weight: bold;
-    padding: 10px 20px 11px;
+    padding: 10px;
     position: relative;
     text-align: center;
     text-decoration: none;
     transition: background-color 0.15s ease-in-out;
-    width: 32%;
+    width: 23%;
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 3px;
 }
 
 .button-box {
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 /**********************************************************************
@@ -177,61 +188,3 @@ h2 {
     left: 2px;
 }
 
-.popup {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.popup-content {
-    background-color: #daac27;
-    z-index: 2;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-.popup-button {
-    box-sizing: border-box;
-    background: #2ba6cb;
-    border: 1px solid #1e728c;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.15s ease-in-out;
-    width: 22%;
-    margin: 5px;
-    border-radius: 3px;
-}
-.popup-image {
-    text-align: center;
-    padding: 2px;
-    max-width: 98%;
-    width: auto;
-    height: auto;
-}
-
-.popup-min {
-    color: #fff;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.popup-min:hover,
-.popup-min:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
