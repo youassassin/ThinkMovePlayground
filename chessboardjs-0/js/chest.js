@@ -317,6 +317,7 @@ var Chest = function(fen) {
         if(promotion.flag)
             promote();
         lastBoard = board.slice(0);
+        history.push(source + '-' + target);
         board[algebraicToIndex(target)] = board[algebraicToIndex(source)];
         board[algebraicToIndex(source)] = '';
     };
@@ -327,6 +328,9 @@ var Chest = function(fen) {
 
     var removeLastMove = function () {
         sanList.pop();
+        var str = history.pop();
+        board[algebraicToIndex(str.split('-')[0])] = board[algebraicToIndex(str.split('-')[1])];
+        board[algebraicToIndex(str.split('-')[1])] = '';
     };
 
 ////////////////////////////////////////////////////////////////////////////////////////

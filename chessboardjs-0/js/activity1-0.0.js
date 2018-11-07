@@ -8,7 +8,7 @@ var reset = function() {
 };
 var undo = function() {
     game.undo();
-    updateStatus();
+    onSnapEnd();
 };
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 //    $('#fen').html(ChessBoard.objToFen(newPos));
@@ -17,7 +17,6 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
     // illegal move
     if (move === null) return 'snapback';
 
-    updateStatus(move);
 };
 var onSnapEnd = function() {
     game.get();
@@ -25,11 +24,11 @@ var onSnapEnd = function() {
     updateStatus();
 };
 var onDragStart = function(source, piece, position, orientation) {
-    if (game.isGameOver() ||
-        (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
-        (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
-       return false;
-    }
+    // if (game.isGameOver() ||
+    //     (game.getWhosTurn() === 'w' && piece.search(/^b/) !== -1) ||
+    //     (game.getWhosTurn() === 'b' && piece.search(/^w/) !== -1)) {
+    //    return false;
+    // }
 };
 var cfg = {
     draggable: true,
